@@ -82,6 +82,54 @@ The `public/` directory contains the entry point `index.php` for the application
 - Make sure the project is set up correctly and the web server is running.
 - Use API client software (e.g., Postman) to interact with the API endpoints listed above.
 
+## CLI Testing
+
+### Login:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"email": "test@example.com", "password": "password"}' http://localhost/api/login
+```
+
+### Register:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"name": "Test User", "email": "test@example.com", "password": "password"}' http://localhost/api/register
+```
+
+### Get API Keys (Requires authentication):
+
+```bash
+curl -X GET -H "Authorization: Bearer YOUR_ACCESS_TOKEN" http://localhost/api/get-keys
+```
+
+### Create New API Key (Requires authentication):
+
+```bash
+curl -X POST -H "Authorization: Bearer YOUR_ACCESS_TOKEN" http://localhost/api/create-key
+```
+
+### Delete API Key (Requires authentication):
+
+```bash
+curl -X DELETE -H "Authorization: Bearer YOUR_ACCESS_TOKEN" http://localhost/api/delete-key/YOUR_API_KEY_ID
+```
+
+### Get 10-20 Fake User Information with Avatar or Without Avatar:
+
+```bash
+curl -X GET http://localhost/api/get-fake-users
+```
+
+### Get Random Fake User Information with Avatar or Without Avatar:
+
+```bash
+curl -X GET http://localhost/api/get-random-fake-user
+```
+
+Make sure to replace `http://localhost` with the actual base URL of your API server, and `YOUR_ACCESS_TOKEN` and `YOUR_API_KEY_ID` with valid access token and API key ID respectively, acquired from previous requests (e.g., login, create-key).
+
+These curl commands will allow you to test the API routes directly from the command line. You can modify the request data as per your test scenarios. Additionally, you can use tools like jq to format and filter the JSON responses for better readability.
+
 ## Contributing
 
 Contributions to this project are welcome! Please submit pull requests or raise issues for bug reports and feature requests.
