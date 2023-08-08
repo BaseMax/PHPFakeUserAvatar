@@ -26,56 +26,63 @@ The project follows a well-organized architecture and adheres to OOP and SOLID p
 
 ```markdown
 - app/
+  - ApiKey/
+    - ApiKey.php
   - Auth/
-    - Authentication.php
-    - UserRepository.php
-  - Key/
-    - Key.php
-    - KeyRepository.php
-  - User/
+    - Auth.php
+  - Controllers/
+    - AuthController.php
+    - Controller.php
+    - FakeUserController.php
+    - KeyController.php
+  - Database/
+    - Database.php
+    - Seeder.php
+  - Models/
+    - ApiKey.php
+    - FakeUser.php
     - User.php
-    - UserRepository.php
-  - Avatar/
-    - Avatar.php
-    - AvatarGenerator.php
-  - Routes/
-    - AuthRoutes.php
-    - KeyRoutes.php
-    - FakeUserRoutes.php
-  - Helpers/
-    - ApiResponse.php
-    - AuthMiddleware.php
-  - Config/
-    - config.php
-    - database.php
+  - Router/
+    - Abort.php
+    - Response.php
+    - Router.php
+  - Validator/
+    - IsValidator.php
+    - RequiredValidator.php
+    - UniqueValidator.php
+    - Validator.php
 - public/
+  - .htaccess
   - index.php
-- .htaccess
+- tests/
 - composer.json
 - composer.lock
+- codeception.yml
 - .env
 - README.md
 ```
 
 The `app/` directory contains the main application logic, separated into different components:
 
+- `ApiKey/`: Contains classes responsible for api key check.
 - `Auth/`: Contains classes responsible for user authentication.
-- `Key/`: Contains classes for API key management.
-- `User/`: Contains classes related to user data.
-- `Avatar/`: Contains classes for generating avatars for fake users.
-- `Routes/`: Defines different API routes and their handlers.
-- `Helpers/`: Contains helper classes and utilities.
-- `Config/`: Holds configuration files for the application.
+- `Controllers/`: Contains app controllers.
+- `Database/`: Contains classes for database oprations.
+- `Models/`: Contains app models.
+- `Router/`: Contains router classes.
+- `Validator/`: Contains data validator usefull for validating request data in controllers.
 
 The `public/` directory contains the entry point `index.php` for the application.
+The `tests/` directory contains test files.
 
 ## Installation and Setup
 
 - Clone the repository: `git clone https://github.com/BaseMax/PHPFakeUserAvatar`
 - Install dependencies: `composer install`
-- Configure the database connection in `app/Config/database.php`
-- Copy `.env.example` to `.env` and set your environment variables if necessary.
-- Set up your web server (e.g., Apache) to point to the `public/` directory.
+- Configure the database connection and JWT secret in `.env`
+- Run database seeders: `php app/Database/Seeder.php`
+- Run project: `cd public/ && php -S localhost:8000`.
+- App is available on `http://localhost:8000`
 
 ## Usage
 
@@ -84,49 +91,52 @@ The `public/` directory contains the entry point `index.php` for the application
 
 ## CLI Testing
 
+- Make sure the project is set up correctly and the web server is running.
+- Run tests `php vendor/bin/codecept run`
+
 ### Login:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"email": "test@example.com", "password": "password"}' http://localhost/api/login
+curl -X POST -H "Content-Type: application/json" -d '{"email": "test@example.com", "password": "password"}' http://localhost:8000/api/login
 ```
 
 ### Register:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"name": "Test User", "email": "test@example.com", "password": "password"}' http://localhost/api/register
+curl -X POST -H "Content-Type: application/json" -d '{"name": "Test User", "email": "test@example.com", "password": "password"}' http://localhost:8000/api/register
 ```
 
 ### Get API Keys (Requires authentication):
 
 ```bash
-curl -X GET -H "Authorization: Bearer YOUR_ACCESS_TOKEN" http://localhost/api/get-keys
+curl -X GET -H "Authorization: Bearer YOUR_ACCESS_TOKEN" http://localhost:8000/api/get-keys
 ```
 
 ### Create New API Key (Requires authentication):
 
 ```bash
-curl -X POST -H "Authorization: Bearer YOUR_ACCESS_TOKEN" http://localhost/api/create-key
+curl -X POST -H "Authorization: Bearer YOUR_ACCESS_TOKEN" http://localhost:8000/api/create-key
 ```
 
 ### Delete API Key (Requires authentication):
 
 ```bash
-curl -X DELETE -H "Authorization: Bearer YOUR_ACCESS_TOKEN" http://localhost/api/delete-key/YOUR_API_KEY_ID
+curl -X DELETE -H "Authorization: Bearer YOUR_ACCESS_TOKEN" http://localhost:8000/api/delete-key/YOUR_API_KEY
 ```
 
-### Get 10-20 Fake User Information with Avatar or Without Avatar:
+### Get 10-20 Fake User Information with Avatar or Without Avatar (Requires Api Key):
 
 ```bash
-curl -X GET http://localhost/api/get-fake-users
+curl -X GET -H "APIKEY: YOUR_API_KEY" http://localhost:8000/api/get-fake-users
 ```
 
-### Get Random Fake User Information with Avatar or Without Avatar:
+### Get Random Fake User Information with Avatar or Without Avatar (Requires Api Key):
 
 ```bash
-curl -X GET http://localhost/api/get-random-fake-user
+curl -X GET -H "APIKEY: YOUR_API_KEY" http://localhost:8000/api/get-random-fake-user
 ```
 
-Make sure to replace `http://localhost` with the actual base URL of your API server, and `YOUR_ACCESS_TOKEN` and `YOUR_API_KEY_ID` with valid access token and API key ID respectively, acquired from previous requests (e.g., login, create-key).
+Make sure to replace `http://localhost:8000` with the actual base URL of your API server, and `YOUR_ACCESS_TOKEN` and `YOUR_API_KEY` with valid access token and API key respectively, acquired from previous requests (e.g., login, create-key).
 
 These curl commands will allow you to test the API routes directly from the command line. You can modify the request data as per your test scenarios. Additionally, you can use tools like jq to format and filter the JSON responses for better readability.
 
