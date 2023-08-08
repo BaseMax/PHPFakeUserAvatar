@@ -77,6 +77,7 @@ The `tests/` directory contains test files.
 
 ## Installation and Setup
 
+- You need a MySql database up and running and create tables in database
 - Clone the repository: `git clone https://github.com/BaseMax/PHPFakeUserAvatar`
 - Install dependencies: `composer install`
 - Configure the database connection and JWT secret in `.env`
