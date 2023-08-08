@@ -149,7 +149,7 @@ These curl commands will allow you to test the API routes directly from the comm
 **Users Table:**
 
 ```sql
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -162,7 +162,7 @@ CREATE TABLE users (
 **API Keys Table:**
 
 ```sql
-CREATE TABLE api_keys (
+CREATE TABLE IF NOT EXISTS api_keys (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     api_key VARCHAR(64) NOT NULL UNIQUE,
@@ -175,7 +175,7 @@ CREATE TABLE api_keys (
 **Fake Users Table:**
 
 ```sql
-CREATE TABLE fake_users (
+CREATE TABLE IF NOT EXISTS fake_users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
