@@ -59,6 +59,7 @@ The project follows a well-organized architecture and adheres to OOP and SOLID p
 - composer.lock
 - codeception.yml
 - .env
+- `backup.sql`
 - README.md
 ```
 
@@ -77,7 +78,7 @@ The `tests/` directory contains test files.
 
 ## Installation and Setup
 
-- You need a MySQL database up and running and create tables in database
+- You need a MySQL database up and running and create tables in database or you can simply just use database `backup.sql` in project root
 - Clone the repository: `git clone https://github.com/BaseMax/PHPFakeUserAvatar`
 - Install dependencies: `composer install`
 - Configure the database connection and JWT secret in `.env`
