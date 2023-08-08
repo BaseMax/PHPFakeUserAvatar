@@ -28,7 +28,33 @@ class KeyController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="OK"
+     *         description="OK",
+     *         @OA\Property(
+     *             type="array",
+     *             @OA\Items(
+     *                 @OA\Property(
+     *                     property="id",
+     *                     type="integer",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="user_id",
+     *                     type="integer",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="api_key",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="created_at",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="updated_at",
+     *                     type="string",
+     *                 )
+     *             ),
+     *             example={{"id":21,"user_id":16,"api_key":"16_64d1edaef3396","created_at":"2023-08-08T07:24:31.000000Z","updated_at":"2023-08-08T07:24:31.000000Z"}}
+     *         )
      *     ),
      *     @OA\Response(
      *         response=400,
@@ -62,6 +88,29 @@ class KeyController
      *     @OA\Response(
      *         response=200,
      *         description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="id",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="user_id",
+     *                 type="integer"
+     *             ),
+     *             @OA\Property(
+     *                 property="api_key",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="updated_at",
+     *                 type="string"
+     *             ),
+     *             @OA\Property(
+     *                 property="created_at",
+     *                 type="string"
+     *             ),
+     *             example={"user_id":16,"api_key":"16_64d20e314b5cd","updated_at":"2023-08-08T09:43:13.000000Z","created_at":"2023-08-08T09:43:13.000000Z","id":27}
+     *         )
      *     ),
      *     @OA\Response(
      *         response=400,
@@ -106,6 +155,13 @@ class KeyController
      *     @OA\Response(
      *         response=200,
      *         description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string"
+     *             ),
+     *             example={"message": "Key deleted"}
+     *         )
      *     ),
      *     @OA\Response(
      *         response=400,

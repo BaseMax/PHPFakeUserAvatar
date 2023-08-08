@@ -28,7 +28,41 @@ class FakeUserController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="OK"
+     *         description="OK",
+     *         @OA\Property(
+     *             type="array",
+     *             @OA\Items(
+     *                 @OA\Property(
+     *                     property="id",
+     *                     type="integer",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="first_name",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="last_name",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="avatar_url",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="created_at",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="updated_at",
+     *                     type="string",
+     *                 )
+     *             ),
+     *             example={{"id":61,"first_name":"Creola","last_name":"Rodriguez","email":"jakubowski.flo@yahoo.com","avatar_url":"https:\/\/via.placeholder.com\/360x360.png\/0055aa?text=person+ut","created_at":"2023-08-08T06:38:24.000000Z","updated_at":"2023-08-08T06:38:24.000000Z"}}
+     *         )
      *     ),
      *     @OA\Response(
      *         response=400,
@@ -60,7 +94,38 @@ class FakeUserController
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="OK"
+     *         description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="id",
+     *                 type="integer",
+     *             ),
+     *             @OA\Property(
+     *                 property="first_name",
+     *                 type="string",
+     *             ),
+     *             @OA\Property(
+     *                 property="last_name",
+     *                 type="string",
+     *             ),
+     *             @OA\Property(
+     *                 property="email",
+     *                 type="string",
+     *             ),
+     *             @OA\Property(
+     *                 property="avatar_url",
+     *                 type="string",
+     *             ),
+     *             @OA\Property(
+     *                 property="created_at",
+     *                 type="string",
+     *             ),
+     *             @OA\Property(
+     *                 property="updated_at",
+     *                 type="string",
+     *             ),
+     *             example={"id":61,"first_name":"Creola","last_name":"Rodriguez","email":"jakubowski.flo@yahoo.com","avatar_url":"https:\/\/via.placeholder.com\/360x360.png\/0055aa?text=person+ut","created_at":"2023-08-08T06:38:24.000000Z","updated_at":"2023-08-08T06:38:24.000000Z"}
+     *         )
      *     ),
      *     @OA\Response(
      *         response=400,
