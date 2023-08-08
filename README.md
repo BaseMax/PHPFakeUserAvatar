@@ -81,8 +81,9 @@ The `tests/` directory contains test files.
 - You need a MySQL database up and running and create tables in database or you can simply just use database `backup.sql` in project root
 - Clone the repository: `git clone https://github.com/BaseMax/PHPFakeUserAvatar`
 - Install dependencies: `composer install`
+- Autoload files: `composer dump-autoload -o`
 - Configure the database connection and JWT secret in `.env`
-- Run database seeders: `php app/Database/Seeder.php`
+- Run database seeders: `cd app/Database/ && php Seeder.php`
 - Run project: `cd public/ && php -S localhost:8000`.
 - App is available on `http://localhost:8000`
 
