@@ -12,6 +12,7 @@
         "codeception/codeception": "^5.0",
         "codeception/module-phpbrowser": "*",
         "codeception/module-asserts": "*",
-        "codeception/module-rest": "*"
+        "codeception/module-rest": "*",
+        "zircote/swagger-php": "^4.7"
     }
 }

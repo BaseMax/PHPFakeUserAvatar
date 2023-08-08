@@ -15,7 +15,6 @@ $dotenv = Dotenv::createImmutable(__DIR__.'/..');
 $dotenv->load();
 Database::init();
 
-
 Router::post('/api/login', [AuthController::class, 'login']);
 Router::post('/api/register', [AuthController::class, 'register']);
 

@@ -1,0 +1,212 @@
+openapi: 3.0.0
+info:
+  title: 'PHP Fake User Avatar Api'
+  version: '1'
+paths:
+  /api/login:
+    post:
+      summary: Login
+      description: 'Login a user and generate JWT token'
+      operationId: c7798e20b4c32275b766e54e334f3c81
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              type: object
+              example:
+                email: mohammad@joubeh.com
+                password: '123456'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  token: { type: string }
+                type: object
+              example:
+                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTZ9.SLZRXQeFa64LGhAetQ-accbiNNa20bPaWoIbV9T0jx4
+        '400':
+          description: 'Invalid email or password'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string }
+                type: object
+              example:
+                message: 'email or password is not valid'
+  /api/register:
+    post:
+      summary: Register
+      description: 'Register a user and generate JWT token'
+      operationId: e206a767e0d89b11fe2795ff1db52f90
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              type: object
+              example:
+                name: mohammad
+                email: mohammad@joubeh.com
+                password: '123456'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  token: { type: string }
+                type: object
+              example:
+                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTZ9.SLZRXQeFa64LGhAetQ-accbiNNa20bPaWoIbV9T0jx4
+        '400':
+          description: 'Email already exists'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string }
+                type: object
+              example:
+                message: 'email already exists'
+  /api/get-fake-users:
+    get:
+      summary: 'Get some fake user'
+      description: 'Retrieve a list of 10-20 fake user information, including avatars if available'
+      operationId: a85a8446b7eca8889c4b56dc7492d45c
+      parameters:
+        -
+          name: APIKEY
+          in: header
+          description: 'Api Key'
+          required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: 'No valid key provided'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string }
+                type: object
+              example:
+                message: 'No valid key provided'
+  /api/get-random-fake-user:
+    get:
+      summary: 'Get a random fake user'
+      description: "Retrieve a random fake user's information, including the avatar if available"
+      operationId: 6a800b2ac818a46846698751cbd1d627
+      parameters:
+        -
+          name: APIKEY
+          in: header
+          description: 'Api Key'
+          required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: 'No valid key provided'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string }
+                type: object
+              example:
+                message: 'No valid key provided'
+  /api/get-keys:
+    get:
+      summary: 'Get api keys'
+      description: 'Retrieve a list of API keys associated with the authenticated user'
+      operationId: 8df34ccf9e33f12242ada250c9e5d106
+      parameters:
+        -
+          name: Authorization
+          in: header
+          description: 'Auth token'
+          required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: 'Not authorized'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string }
+                type: object
+              example:
+                message: 'Not authorized'
+  /api/create-key:
+    post:
+      summary: 'Create Api Key'
+      description: 'Create a new API key for the authenticated user'
+      operationId: cc3497d4a56370850b7cd473ee215a58
+      parameters:
+        -
+          name: Authorization
+          in: header
+          description: 'Auth token'
+          required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: 'Not authorized'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string }
+                type: object
+              example:
+                message: 'Not authorized'
+  '/api/delete-key/{key}':
+    delete:
+      summary: 'Delete Api Key'
+      description: 'Delete the specified API key belonging to the authenticated user'
+      operationId: 4214d7ae616565f78801791b5d12874a
+      parameters:
+        -
+          name: key
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          in: header
+          description: 'Auth token'
+          required: true
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: 'Not authorized'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string }
+                type: object
+              example:
+                message: 'Not authorized'
