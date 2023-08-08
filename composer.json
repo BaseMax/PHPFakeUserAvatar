@@ -1,0 +1,17 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "illuminate/database": "^10.17",
+        "miladrahimi/php-jwt": "2.*",
+        "fakerphp/faker": "^1.23",
+        "codeception/codeception": "^5.0",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-asserts": "*",
+        "codeception/module-rest": "*"
+    }
+}
