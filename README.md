@@ -59,7 +59,8 @@ The project follows a well-organized architecture and adheres to OOP and SOLID p
 - composer.lock
 - codeception.yml
 - .env
-- `backup.sql`
+- backup.sql
+- openapi.yaml
 - README.md
 ```
 
